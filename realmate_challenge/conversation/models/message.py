@@ -9,7 +9,7 @@ from realmate_challenge.conversation.models.conversation import Conversation
 
 class Message(models.Model, MessageEntity):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False, unique=True)
-    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name="messages")
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
     content = models.TextField()
     direction = models.CharField(max_length=8, choices=MessageDirection.choices())
     external_timestamp = models.DateTimeField(null=False)
@@ -17,7 +17,7 @@ class Message(models.Model, MessageEntity):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Message - {self.id}"
+        return f'Message - {self.id}'
 
     class Meta:
         db_table = 'Message'

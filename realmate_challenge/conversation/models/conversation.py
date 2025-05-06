@@ -14,7 +14,7 @@ class Conversation(models.Model, ConversationEntity):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Conversation - {self.id} - ({self.status})"
+        return f'Conversation - {self.id} - ({self.status})'
 
     class Meta:
         db_table = 'conversation'
