@@ -36,6 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third Part Libs
+    'rest_framework',
+
+    # Project Apps
     'realmate_challenge.conversation'
 ]
 
