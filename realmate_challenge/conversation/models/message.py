@@ -3,7 +3,7 @@ from uuid import uuid4
 from django.db import models
 
 from realmate_challenge.conversation.entities.enuns import MessageDirection
-from realmate_challenge.conversation.entities.message import MessageEntity
+from realmate_challenge.conversation.entities.message_entity import MessageEntity
 from realmate_challenge.conversation.models.conversation import Conversation
 
 

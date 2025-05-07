@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from uuid import UUID
 from xmlrpc.client import DateTime
 
-from realmate_challenge.conversation.entities.conversation import ConversationEntity
+from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
 from realmate_challenge.conversation.entities.enuns import MessageDirection
 
 

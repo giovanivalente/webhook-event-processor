@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from django.db import models
 
-from realmate_challenge.conversation.entities.conversation import ConversationEntity
+from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
 from realmate_challenge.conversation.entities.enuns import ConversationStatus
 
 
