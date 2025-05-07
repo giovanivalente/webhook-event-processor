@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from xmlrpc.client import DateTime
+from datetime import datetime
 
 from realmate_challenge.conversation.entities.enuns import EventType
 
@@ -7,5 +7,5 @@ from realmate_challenge.conversation.entities.enuns import EventType
 @dataclass
 class WebhookInputDTO:
     type: EventType
-    timestamp: DateTime
+    timestamp: datetime
     data: dict
