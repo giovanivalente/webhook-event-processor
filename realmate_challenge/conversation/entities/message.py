@@ -13,5 +13,5 @@ class MessageEntity:
     content: str
     direction: MessageDirection
     external_timestamp: DateTime
-    created_at: DateTime
-    updated_at: DateTime
+    created_at: DateTime | None = None
+    updated_at: DateTime | None = None
