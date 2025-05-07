@@ -1,6 +1,6 @@
 from dataclasses import dataclass
+from datetime import datetime
 from uuid import UUID
-from xmlrpc.client import DateTime
 
 from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
 from realmate_challenge.conversation.entities.enuns import MessageDirection
@@ -12,6 +12,6 @@ class MessageEntity:
     conversation: ConversationEntity
     content: str
     direction: MessageDirection
-    external_timestamp: DateTime
-    created_at: DateTime | None = None
-    updated_at: DateTime | None = None
+    external_timestamp: datetime
+    created_at: datetime | None = None
+    updated_at: datetime | None = None

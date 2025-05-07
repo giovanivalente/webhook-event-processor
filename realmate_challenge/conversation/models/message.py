@@ -3,11 +3,10 @@ from uuid import uuid4
 from django.db import models
 
 from realmate_challenge.conversation.entities.enuns import MessageDirection
-from realmate_challenge.conversation.entities.message_entity import MessageEntity
 from realmate_challenge.conversation.models.conversation import Conversation
 
 
-class Message(models.Model, MessageEntity):
+class Message(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False, unique=True)
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
     content = models.TextField()
