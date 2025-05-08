@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     # Third Part Libs
     'rest_framework',
+    'drf_spectacular',
 
     # Project Apps
     'realmate_challenge.webhook_api'
@@ -123,7 +124,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'realmate_challenge.shared.global_exception_handler.custom_exception_handler'
+    'EXCEPTION_HANDLER': 'realmate_challenge.shared.global_exception_handler.custom_exception_handler',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 LOGGING = {
@@ -156,4 +158,10 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Webhook Event Processor',
+    'DESCRIPTION': 'Documentação da API',
+    'VERSION': '1.0.0',
 }

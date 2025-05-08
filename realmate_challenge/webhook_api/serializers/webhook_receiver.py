@@ -18,10 +18,17 @@ class NewMessageSerializer(serializers.Serializer):
     conversation_id = serializers.UUIDField()
 
 
+class DataSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+    direction = serializers.ChoiceField(choices=MessageDirection.choices(), required=False)
+    content = serializers.CharField(required=False)
+    conversation_id = serializers.UUIDField(required=False)
+
+
 class WebhookReceiverSerializer(serializers.Serializer):
     type = serializers.ChoiceField(choices=EventType.choices())
     timestamp = serializers.DateTimeField()
-    data = serializers.DictField()
+    data = DataSerializer()
 
     def validate(self, attrs):
         event_type = EventType(attrs.get('type'))

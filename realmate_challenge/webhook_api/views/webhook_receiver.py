@@ -1,7 +1,9 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from realmate_challenge.shared.schema_exceptions import STANDARD_ERROR_RESPONSES
 from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.enuns import EventType
 from realmate_challenge.webhook_api.factory import ConversationFactory
@@ -13,6 +15,12 @@ class WebhookReceiverAPIView(APIView):
         super().__init__()
         self.webhook_event_handler = ConversationFactory.make_webhook_event_handler()
 
+    @extend_schema(
+        request=WebhookReceiverSerializer,
+        responses={204: None, **STANDARD_ERROR_RESPONSES},
+        summary='Receive Webhooks',
+        description='Endpoint to process conversation events.',
+    )
     def post(self, request):
         serializer = WebhookReceiverSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
