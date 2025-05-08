@@ -25,13 +25,13 @@ class WebhookEventHandler:
         event_type = webhook_dto.type
 
         if event_type == EventType.NEW_CONVERSATION:
-            self._create_conversation.create(webhook_dto)
+            self._create_conversation.create_new_conversation(webhook_dto)
 
         elif event_type == EventType.NEW_MESSAGE:
-            self._create_message.create(webhook_dto)
+            self._create_message.create_new_message(webhook_dto)
 
         elif event_type == EventType.CLOSE_CONVERSATION:
-            self._close_conversation.close(webhook_dto)
+            self._close_conversation.close_conversation(webhook_dto)
 
         else:
             logger.warning(f"The event type '{event_type}' is not supported.")

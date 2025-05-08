@@ -7,7 +7,7 @@ from realmate_challenge.webhook_api.contracts.repositories.conversation_reposito
 )
 from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
-from realmate_challenge.webhook_api.entities.enuns import ConversationStatus
+from realmate_challenge.webhook_api.mapper import webhook_dto_to_open_conversation_entity
 
 logger = logging.getLogger(__name__)
 
@@ -16,10 +16,8 @@ class CreateConversation:
     def __init__(self, conversation_repository: ConversationRepositoryContract):
         self._conversation_repository = conversation_repository
 
-    def create(self, webhook_dto: WebhookInputDTO) -> ConversationEntity:
-        conversation = ConversationEntity(
-            id=webhook_dto.data.get('id'), status=ConversationStatus.OPEN, external_timestamp=webhook_dto.timestamp
-        )
+    def create_new_conversation(self, webhook_dto: WebhookInputDTO) -> ConversationEntity:
+        conversation = webhook_dto_to_open_conversation_entity(webhook_dto)
 
         self._validate_conversation(conversation_id=conversation.id)
 

@@ -1,3 +1,4 @@
+from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.enuns import ConversationStatus, MessageDirection
 from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
@@ -34,4 +35,20 @@ def message_model_to_entity(model_object: ORMMessage) -> MessageEntity:
         external_timestamp=model_object.external_timestamp,
         created_at=model_object.created_at,
         updated_at=model_object.updated_at,
+    )
+
+
+def webhook_dto_to_open_conversation_entity(webhook_dto: WebhookInputDTO) -> ConversationEntity:
+    return ConversationEntity(
+        id=webhook_dto.data.get('id'), status=ConversationStatus.OPEN, external_timestamp=webhook_dto.timestamp
+    )
+
+
+def webhook_dto_to_message_entity(webhook_dto: WebhookInputDTO, conversation: ConversationEntity) -> MessageEntity:
+    return MessageEntity(
+        id=webhook_dto.data.get('id'),
+        conversation=conversation,
+        content=webhook_dto.data.get('content'),
+        direction=MessageDirection(webhook_dto.data.get('direction')),
+        external_timestamp=webhook_dto.timestamp,
     )

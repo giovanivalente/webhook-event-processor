@@ -27,6 +27,19 @@ DJANGO_SETTINGS_MODULE = "realmate_challenge.settings"
 pythonpath = "."
 addopts = '-p no:warnings'
 
+[tool.coverage.report]
+fail_under = 80
+omit = [
+    "*/migrations/*",
+    "*/__init__.py",
+    "*/tests/*",
+    "*/settings.py",
+    "*/asgi.py",
+    "*/wsgi.py",
+    "*/urls.py"
+]
+show_missing = true
+
 [tool.ruff]
 line-length = 120
 target-version = "py313"
@@ -53,13 +66,13 @@ select = [
 quote-style = "single"
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F403", "F401"]
-"tests/*" = ["F401", "F811", "S101"]
+"*/__init__.py" = ["F403", "F401"]
+"*/tests/*" = ["F401", "F811", "S101"]
 
 [tool.taskipy.tasks]
 lint = 'ruff check'
 pre_format = 'ruff check --fix'
 format = 'ruff format'
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=fast_zero -vv'
+test = 'pytest -s -x --cov=realmate_challenge -vv'
 post_test = 'coverage html'

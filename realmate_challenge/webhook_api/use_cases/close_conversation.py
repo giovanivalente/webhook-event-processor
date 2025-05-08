@@ -15,7 +15,7 @@ class CloseConversation:
     def __init__(self, conversation_repository: ConversationRepositoryContract):
         self._conversation_repository = conversation_repository
 
-    def close(self, webhook_dto: WebhookInputDTO) -> ConversationEntity:
+    def close_conversation(self, webhook_dto: WebhookInputDTO) -> ConversationEntity:
         conversation = self._conversation_repository.get_conversation_by_id(webhook_dto.data.get('id'))
 
         self._validate_conversation(conversation)

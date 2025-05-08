@@ -8,8 +8,8 @@ from realmate_challenge.webhook_api.contracts.repositories.conversation_reposito
 from realmate_challenge.webhook_api.contracts.repositories.message_repository_contract import MessageRepositoryContract
 from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
-from realmate_challenge.webhook_api.entities.enuns import MessageDirection
 from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
+from realmate_challenge.webhook_api.mapper import webhook_dto_to_message_entity
 
 logger = logging.getLogger(__name__)
 
@@ -21,16 +21,10 @@ class CreateMessage:
         self._conversation_repository = conversation_repository
         self._message_repository = message_repository
 
-    def create(self, webhook_dto: WebhookInputDTO) -> MessageEntity:
+    def create_new_message(self, webhook_dto: WebhookInputDTO) -> MessageEntity:
         conversation = self._get_open_conversation(conversation_id=webhook_dto.data.get('conversation_id'))
 
-        message = MessageEntity(
-            id=webhook_dto.data.get('id'),
-            conversation=conversation,
-            content=webhook_dto.data.get('content'),
-            direction=MessageDirection(webhook_dto.data.get('direction')),
-            external_timestamp=webhook_dto.timestamp,
-        )
+        message = webhook_dto_to_message_entity(webhook_dto, conversation)
 
         self._validate_message(message_id=message.id)
 
