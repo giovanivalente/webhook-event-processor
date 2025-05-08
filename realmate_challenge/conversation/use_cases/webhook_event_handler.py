@@ -1,4 +1,4 @@
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, APIException
 
 from realmate_challenge.conversation.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.conversation.entities.enuns import EventType
@@ -33,4 +33,4 @@ class WebhookEventHandler:
         else:
             # TODO: refact
             # TODO: add log
-            raise ValidationError(detail=f'Unknow Event: {event_type}')
+            raise APIException(detail=f'Unknow Event: {event_type}')
