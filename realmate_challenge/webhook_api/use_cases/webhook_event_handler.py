@@ -1,10 +1,13 @@
-from rest_framework.exceptions import APIException
+import logging
 
+from realmate_challenge.shared.exception import RealmateAPIError
 from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.enuns import EventType
 from realmate_challenge.webhook_api.use_cases.close_conversation import CloseConversation
 from realmate_challenge.webhook_api.use_cases.create_conversation import CreateConversation
 from realmate_challenge.webhook_api.use_cases.create_message import CreateMessage
+
+logger = logging.getLogger(__name__)
 
 
 class WebhookEventHandler:
@@ -31,6 +34,5 @@ class WebhookEventHandler:
             self._close_conversation.close(webhook_dto)
 
         else:
-            # TODO: refact
-            # TODO: add log
-            raise APIException(detail=f'Unknow Event: {event_type}')
+            logger.warning(f"The event type '{event_type}' is not supported.")
+            raise RealmateAPIError(detail='The provided event type is not supported or is invalid.')

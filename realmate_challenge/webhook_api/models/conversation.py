@@ -16,4 +16,4 @@ class Conversation(models.Model):
         return f'Conversation - {self.id} - ({self.status})'
 
     class Meta:
-        db_table = 'webhook_api'
+        db_table = 'conversation'

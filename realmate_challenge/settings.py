@@ -123,5 +123,37 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": 'realmate_challenge.shared.exception_handler.custom_exception_handler',
+    'EXCEPTION_HANDLER': 'realmate_challenge.shared.global_exception_handler.custom_exception_handler'
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'default': {
+            'format': '[{levelname}] {asctime} - {message}',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        },
+    },
+
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'realmate_challenge': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
 }

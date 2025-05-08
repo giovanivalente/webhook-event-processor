@@ -1,11 +1,14 @@
-from rest_framework.exceptions import APIException
+import logging
 
+from realmate_challenge.shared.exception import RealmateAPIError
 from realmate_challenge.webhook_api.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
 )
 from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.enuns import ConversationStatus
+
+logger = logging.getLogger(__name__)
 
 
 class CloseConversation:
@@ -24,6 +27,5 @@ class CloseConversation:
 
     def _validate_conversation(self, conversation: ConversationEntity) -> None:
         if conversation.status == ConversationStatus.CLOSED:
-            # TODO: refact
-            # TODO: add log
-            raise APIException(detail='Conversation already closed')
+            logger.warning(f"Conversation with ID '{conversation.id}' is already closed.")
+            raise RealmateAPIError(detail='A conversation with the given ID is already closed.')

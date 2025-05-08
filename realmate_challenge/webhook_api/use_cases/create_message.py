@@ -1,7 +1,7 @@
+import logging
 from uuid import UUID
 
-from rest_framework.exceptions import APIException
-
+from realmate_challenge.shared.exception import RealmateAPIError
 from realmate_challenge.webhook_api.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
 )
@@ -10,6 +10,8 @@ from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.enuns import MessageDirection
 from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
+
+logger = logging.getLogger(__name__)
 
 
 class CreateMessage:
@@ -46,6 +48,5 @@ class CreateMessage:
         message_already_exists = self._message_repository.get_message_by_id(message_id, raise_exception=False)
 
         if message_already_exists:
-            # TODO: refact
-            # TODO: add log
-            raise APIException(detail='Message already exist')
+            logger.warning(f"Message with ID '{message_id}' already exists.")
+            raise RealmateAPIError(detail='The message with the given ID already exists.')
