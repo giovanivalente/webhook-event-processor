@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.exceptions import APIException
 
 from realmate_challenge.conversation.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,

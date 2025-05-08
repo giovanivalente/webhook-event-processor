@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID
 
-from rest_framework.exceptions import ValidationError, APIException
+from rest_framework.exceptions import APIException
 
 from realmate_challenge.conversation.entities.enuns import ConversationStatus
 

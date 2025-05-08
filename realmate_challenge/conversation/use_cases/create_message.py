@@ -14,7 +14,7 @@ from realmate_challenge.conversation.entities.message_entity import MessageEntit
 
 class CreateMessage:
     def __init__(
-            self, conversation_repository: ConversationRepositoryContract, message_repository: MessageRepositoryContract
+        self, conversation_repository: ConversationRepositoryContract, message_repository: MessageRepositoryContract
     ):
         self._conversation_repository = conversation_repository
         self._message_repository = message_repository
