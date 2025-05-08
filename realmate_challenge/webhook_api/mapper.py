@@ -1,4 +1,4 @@
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.enuns import ConversationStatus, MessageDirection
 from realmate_challenge.webhook_api.entities.message_entity import MessageEntity

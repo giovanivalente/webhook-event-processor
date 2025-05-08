@@ -4,7 +4,7 @@ from unittest.mock import Mock
 import pytest
 
 from realmate_challenge.shared.exception import RealmateAPIError
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.factory import ConversationFactory
 
 

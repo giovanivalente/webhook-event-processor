@@ -1,7 +1,7 @@
 import logging
 
 from realmate_challenge.shared.exception import RealmateAPIError
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.enuns import EventType
 from realmate_challenge.webhook_api.use_cases.close_conversation import CloseConversation
 from realmate_challenge.webhook_api.use_cases.create_conversation import CreateConversation

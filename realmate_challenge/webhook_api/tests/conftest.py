@@ -3,7 +3,7 @@ from uuid import uuid4
 
 import pytest
 
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.enuns import EventType, MessageDirection
 
 

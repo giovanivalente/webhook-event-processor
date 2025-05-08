@@ -4,7 +4,7 @@ from realmate_challenge.shared.exception import RealmateAPIError
 from realmate_challenge.webhook_api.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
 )
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.enuns import ConversationStatus
 

@@ -6,7 +6,7 @@ from realmate_challenge.webhook_api.contracts.repositories.conversation_reposito
     ConversationRepositoryContract,
 )
 from realmate_challenge.webhook_api.contracts.repositories.message_repository_contract import MessageRepositoryContract
-from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.dtos import WebhookInputDTO
 from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
 from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
 from realmate_challenge.webhook_api.mapper import webhook_dto_to_message_entity
