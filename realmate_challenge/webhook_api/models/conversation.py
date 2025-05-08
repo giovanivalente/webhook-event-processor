@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from django.db import models
 
-from realmate_challenge.conversation.entities.enuns import ConversationStatus
+from realmate_challenge.webhook_api.entities.enuns import ConversationStatus
 
 
 class Conversation(models.Model):
@@ -16,4 +16,4 @@ class Conversation(models.Model):
         return f'Conversation - {self.id} - ({self.status})'
 
     class Meta:
-        db_table = 'conversation'
+        db_table = 'webhook_api'

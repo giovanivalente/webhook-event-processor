@@ -2,12 +2,12 @@ from uuid import UUID
 
 from rest_framework.exceptions import APIException
 
-from realmate_challenge.conversation.contracts.repositories.conversation_repository_contract import (
+from realmate_challenge.webhook_api.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
 )
-from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
-from realmate_challenge.conversation.mapper import conversation_model_to_entity
-from realmate_challenge.conversation.models import Conversation as ORMConversation
+from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
+from realmate_challenge.webhook_api.mapper import conversation_model_to_entity
+from realmate_challenge.webhook_api.models import Conversation as ORMConversation
 from realmate_challenge.shared.repository import BaseRepository
 
 

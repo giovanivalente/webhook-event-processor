@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from realmate_challenge.conversation.entities.enuns import EventType, MessageDirection
+from realmate_challenge.webhook_api.entities.enuns import EventType, MessageDirection
 
 
 class NewConversationSerializer(serializers.Serializer):

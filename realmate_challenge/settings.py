@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Project Apps
-    'realmate_challenge.conversation'
+    'realmate_challenge.webhook_api'
 ]
 
 MIDDLEWARE = [

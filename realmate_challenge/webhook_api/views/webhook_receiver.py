@@ -2,10 +2,10 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from realmate_challenge.conversation.dtos.webhook_dto import WebhookInputDTO
-from realmate_challenge.conversation.entities.enuns import EventType
-from realmate_challenge.conversation.factory import ConversationFactory
-from realmate_challenge.conversation.serializers.webhook_receiver import WebhookReceiverSerializer
+from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.entities.enuns import EventType
+from realmate_challenge.webhook_api.factory import ConversationFactory
+from realmate_challenge.webhook_api.serializers.webhook_receiver import WebhookReceiverSerializer
 
 
 class WebhookReceiverAPIView(APIView):

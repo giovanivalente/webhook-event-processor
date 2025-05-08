@@ -2,8 +2,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID
 
-from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
-from realmate_challenge.conversation.entities.enuns import MessageDirection
+from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
+from realmate_challenge.webhook_api.entities.enuns import MessageDirection
 
 
 @dataclass

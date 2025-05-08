@@ -2,14 +2,14 @@ from uuid import UUID
 
 from rest_framework.exceptions import APIException
 
-from realmate_challenge.conversation.contracts.repositories.conversation_repository_contract import (
+from realmate_challenge.webhook_api.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
 )
-from realmate_challenge.conversation.contracts.repositories.message_repository_contract import MessageRepositoryContract
-from realmate_challenge.conversation.dtos.webhook_dto import WebhookInputDTO
-from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
-from realmate_challenge.conversation.entities.enuns import MessageDirection
-from realmate_challenge.conversation.entities.message_entity import MessageEntity
+from realmate_challenge.webhook_api.contracts.repositories.message_repository_contract import MessageRepositoryContract
+from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
+from realmate_challenge.webhook_api.entities.enuns import MessageDirection
+from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
 
 
 class CreateMessage:

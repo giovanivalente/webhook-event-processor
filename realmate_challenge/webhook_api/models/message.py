@@ -2,8 +2,8 @@ from uuid import uuid4
 
 from django.db import models
 
-from realmate_challenge.conversation.entities.enuns import MessageDirection
-from realmate_challenge.conversation.models.conversation import Conversation
+from realmate_challenge.webhook_api.entities.enuns import MessageDirection
+from realmate_challenge.webhook_api.models.conversation import Conversation
 
 
 class Message(models.Model):

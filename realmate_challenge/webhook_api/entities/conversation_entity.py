@@ -4,7 +4,7 @@ from uuid import UUID
 
 from rest_framework.exceptions import APIException
 
-from realmate_challenge.conversation.entities.enuns import ConversationStatus
+from realmate_challenge.webhook_api.entities.enuns import ConversationStatus
 
 
 @dataclass
@@ -17,4 +17,4 @@ class ConversationEntity:
 
     def status_must_be_open(self):
         if self.status == ConversationStatus.CLOSED:
-            raise APIException('This conversation is closed.')
+            raise APIException('This webhook_api is closed.')

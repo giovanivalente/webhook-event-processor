@@ -18,5 +18,5 @@ Including another URLconf
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('realmate_challenge.conversation.urls', namespace='conversation')),
+    path('', include('realmate_challenge.webhook_api.urls', namespace='webhook_api')),
 ]

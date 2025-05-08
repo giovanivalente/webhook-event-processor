@@ -1,8 +1,8 @@
-from realmate_challenge.conversation.entities.conversation_entity import ConversationEntity
-from realmate_challenge.conversation.entities.enuns import ConversationStatus, MessageDirection
-from realmate_challenge.conversation.entities.message_entity import MessageEntity
-from realmate_challenge.conversation.models import Conversation as ORMConversation
-from realmate_challenge.conversation.models import Message as ORMMessage
+from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
+from realmate_challenge.webhook_api.entities.enuns import ConversationStatus, MessageDirection
+from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
+from realmate_challenge.webhook_api.models import Conversation as ORMConversation
+from realmate_challenge.webhook_api.models import Message as ORMMessage
 
 
 def conversation_model_to_entity(model_object: ORMConversation) -> ConversationEntity:

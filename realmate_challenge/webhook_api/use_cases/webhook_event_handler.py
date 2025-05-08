@@ -1,10 +1,10 @@
 from rest_framework.exceptions import APIException
 
-from realmate_challenge.conversation.dtos.webhook_dto import WebhookInputDTO
-from realmate_challenge.conversation.entities.enuns import EventType
-from realmate_challenge.conversation.use_cases.close_conversation import CloseConversation
-from realmate_challenge.conversation.use_cases.create_conversation import CreateConversation
-from realmate_challenge.conversation.use_cases.create_message import CreateMessage
+from realmate_challenge.webhook_api.dtos.webhook_dto import WebhookInputDTO
+from realmate_challenge.webhook_api.entities.enuns import EventType
+from realmate_challenge.webhook_api.use_cases.close_conversation import CloseConversation
+from realmate_challenge.webhook_api.use_cases.create_conversation import CreateConversation
+from realmate_challenge.webhook_api.use_cases.create_message import CreateMessage
 
 
 class WebhookEventHandler:

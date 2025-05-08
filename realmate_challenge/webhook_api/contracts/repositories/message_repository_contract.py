@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from uuid import UUID
 
-from realmate_challenge.conversation.entities.message_entity import MessageEntity
+from realmate_challenge.webhook_api.entities.message_entity import MessageEntity
 
 
 class MessageRepositoryContract(ABC):
