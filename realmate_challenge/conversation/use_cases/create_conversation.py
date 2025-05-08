@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import APIException
 
 from realmate_challenge.conversation.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
@@ -26,11 +26,11 @@ class CreateConversation:
         return created_conversation
 
     def _validate_conversation(self, conversation_id: UUID) -> None:
-        conversation_already_exits = self._conversation_repository.get_conversation_by_id(
+        conversation_already_exists = self._conversation_repository.get_conversation_by_id(
             conversation_id, raise_exception=False
         )
 
-        if conversation_already_exits:
+        if conversation_already_exists:
             # TODO: refact
             # TODO: add log
-            raise ValidationError(detail='Conversation already exist')
+            raise APIException(detail='Conversation already exist')

@@ -19,4 +19,4 @@ class Message(models.Model):
         return f'Message - {self.id}'
 
     class Meta:
-        db_table = 'Message'
+        db_table = 'message'

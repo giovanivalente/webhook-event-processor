@@ -1,4 +1,4 @@
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, APIException
 
 from realmate_challenge.conversation.contracts.repositories.conversation_repository_contract import (
     ConversationRepositoryContract,
@@ -26,4 +26,4 @@ class CloseConversation:
         if conversation.status == ConversationStatus.CLOSED:
             # TODO: refact
             # TODO: add log
-            raise ValidationError(detail='Conversation already closed')
+            raise APIException(detail='Conversation already closed')
