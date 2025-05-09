@@ -1,7 +1,6 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List
 from uuid import UUID
 
 from realmate_challenge.shared.exception import RealmateAPIError

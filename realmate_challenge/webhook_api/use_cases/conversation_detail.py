@@ -11,7 +11,6 @@ logger = logging.getLogger(__name__)
 
 
 class ConversationDetail:
-
     def __init__(self, conversation_repository: ConversationRepositoryContract):
         self._conversation_repository = conversation_repository
 

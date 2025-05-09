@@ -16,10 +16,10 @@ class ConversationOutputSerializer(serializers.Serializer):
     messages = MessageOutputSerializer(many=True)
 
     def to_representation(self, instance: ConversationEntity):
-        messages = self.context.get("paginated_messages")
+        messages = self.context.get('paginated_messages')
 
         return {
-            "id": instance.id,
-            "status": instance.status.value,
-            "messages": MessageOutputSerializer(messages, many=True).data,
+            'id': instance.id,
+            'status': instance.status.value,
+            'messages': MessageOutputSerializer(messages, many=True).data,
         }

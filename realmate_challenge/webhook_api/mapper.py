@@ -13,7 +13,7 @@ def conversation_model_to_entity(model_object: ORMConversation) -> ConversationE
         external_timestamp=model_object.external_timestamp,
         created_at=model_object.created_at,
         updated_at=model_object.updated_at,
-        messages=model_object.messages.all()
+        messages=model_object.messages.all(),
     )
 
 

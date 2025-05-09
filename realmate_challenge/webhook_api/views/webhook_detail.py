@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -8,8 +8,10 @@ from rest_framework.views import APIView
 from realmate_challenge.shared.pagination import CustomPagination
 from realmate_challenge.shared.schema_exceptions import STANDARD_ERROR_RESPONSES
 from realmate_challenge.webhook_api.factory import ConversationFactory
-from realmate_challenge.webhook_api.serializers.webhook_detail import ConversationOutputSerializer, \
-    MessageOutputSerializer
+from realmate_challenge.webhook_api.serializers.webhook_detail import (
+    ConversationOutputSerializer,
+    MessageOutputSerializer,
+)
 
 
 class WebhookDetailAPIView(APIView):
@@ -21,7 +23,7 @@ class WebhookDetailAPIView(APIView):
     @extend_schema(
         parameters=[
             OpenApiParameter(name='page', type=int, required=False, description='Page number'),
-            OpenApiParameter(name='page_size', type=int, required=False, description='Number of items per page')
+            OpenApiParameter(name='page_size', type=int, required=False, description='Number of items per page'),
         ],
         responses={200: ConversationOutputSerializer, **STANDARD_ERROR_RESPONSES},
         summary='Detail Conversation',
@@ -35,7 +37,7 @@ class WebhookDetailAPIView(APIView):
         paginator = self.pagination_class()
         paginated = paginator.paginate_queryset(sorted_messages, request, view=self)
 
-        conversation_data = ConversationOutputSerializer(conversation, context={"paginated_messages": paginated}).data
+        conversation_data = ConversationOutputSerializer(conversation, context={'paginated_messages': paginated}).data
         message_data = MessageOutputSerializer(paginated, many=True).data
 
         paginated_data = paginator.build_conversation_response_data(conversation_data, message_data)
