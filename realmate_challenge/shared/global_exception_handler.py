@@ -53,25 +53,17 @@ def _internal_error_response() -> Response:
     )
 
 
-def _format_field_errors(detail: dict, parent_field: str = "") -> list:
+def _format_field_errors(detail: dict, parent_field: str = '') -> list:
     error_list = []
     for field, errors in detail.items():
-        full_field = f"{parent_field}.{field}" if parent_field else field
+        full_field = f'{parent_field}.{field}' if parent_field else field
         if isinstance(errors, dict):
             error_list.extend(_format_field_errors(errors, full_field))
         elif isinstance(errors, list):
             for err in errors:
-                error_list.append({
-                    "field": full_field,
-                    "message": str(err),
-                    "code": getattr(err, 'code', 'invalid')
-                })
+                error_list.append({'field': full_field, 'message': str(err), 'code': getattr(err, 'code', 'invalid')})
         else:
-            error_list.append({
-                "field": full_field,
-                "message": str(errors),
-                "code": getattr(errors, 'code', 'invalid')
-            })
+            error_list.append({'field': full_field, 'message': str(errors), 'code': getattr(errors, 'code', 'invalid')})
     return error_list
 
 

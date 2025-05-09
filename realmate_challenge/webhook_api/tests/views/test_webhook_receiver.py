@@ -139,7 +139,7 @@ class TestWebhookReceiverAPIView:
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert field == 'data.direction'
-        assert message == f'\"{expected_direction}\" is not a valid choice.'
+        assert message == f'"{expected_direction}" is not a valid choice.'
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
     def test_should_raise_error_if_type_is_new_message_and_content_is_not_provided(
