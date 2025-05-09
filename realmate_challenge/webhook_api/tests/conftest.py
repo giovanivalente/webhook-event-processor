@@ -1,10 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from uuid import uuid4
 
 import pytest
 
 from realmate_challenge.webhook_api.dtos import WebhookInputDTO
-from realmate_challenge.webhook_api.entities.enuns import EventType, MessageDirection
+from realmate_challenge.webhook_api.entities.conversation_entity import ConversationEntity
+from realmate_challenge.webhook_api.entities.enuns import ConversationStatus, EventType, MessageDirection
 
 
 @pytest.fixture
@@ -75,3 +76,15 @@ def new_sent_message_input_data():
             'conversation_id': '6a41b347-8d80-4ce9-84ba-7af66f369f6a',
         },
     }
+
+
+@pytest.fixture
+def conversation_entity():
+    return ConversationEntity(
+        id=uuid4(),
+        status=ConversationStatus.OPEN,
+        external_timestamp=datetime.now() - timedelta(days=10),
+        created_at=datetime.now() - timedelta(days=9, hours=23),
+        updated_at=datetime.now() - timedelta(days=9, hours=23),
+        messages=[],
+    )

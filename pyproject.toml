@@ -20,6 +20,7 @@ pytest-sugar = "^1.0.0"
 pytest-django = "^4.11.1"
 taskipy = "^1.14.1"
 ipython = "^9.2.0"
+factory-boy = "^3.3.3"
 
 
 [tool.pytest.ini_options]
