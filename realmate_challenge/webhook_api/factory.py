@@ -5,6 +5,7 @@ from realmate_challenge.webhook_api.contracts.repositories.message_repository_co
 from realmate_challenge.webhook_api.repositories.conversation_repository import ConversationRepository
 from realmate_challenge.webhook_api.repositories.message_repository import MessageRepository
 from realmate_challenge.webhook_api.use_cases.close_conversation import CloseConversation
+from realmate_challenge.webhook_api.use_cases.conversation_detail import ConversationDetail
 from realmate_challenge.webhook_api.use_cases.create_conversation import CreateConversation
 from realmate_challenge.webhook_api.use_cases.create_message import CreateMessage
 from realmate_challenge.webhook_api.use_cases.webhook_event_handler import WebhookEventHandler
@@ -40,3 +41,7 @@ class ConversationFactory:
     @classmethod
     def make_close_conversation(cls) -> CloseConversation:
         return CloseConversation(conversation_repository=cls.make_conversation_repository())
+
+    @classmethod
+    def make_conversation_detail(cls) -> ConversationDetail:
+        return ConversationDetail(conversation_repository=cls.make_conversation_repository())

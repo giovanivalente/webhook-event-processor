@@ -18,6 +18,13 @@ class BaseRepository(ABC, Generic[TModel]):
         except ObjectDoesNotExist:
             return None
 
+    def safe_get_with_prefetch(self, prefetch_fields: list[str], **kwargs) -> TModel | None:
+        try:
+            query = self.model.objects.prefetch_related(*prefetch_fields)
+            return query.get(**kwargs)
+        except ObjectDoesNotExist:
+            return None
+
     def update(self, obj, /, **kwargs) -> TModel:
         has_changes = False
 

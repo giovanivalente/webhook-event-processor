@@ -21,7 +21,7 @@ class WebhookReceiverAPIView(APIView):
         summary='Receive Webhooks',
         description='Endpoint to process conversation events.',
     )
-    def post(self, request):
+    def post(self, request) -> Response:
         serializer = WebhookReceiverSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

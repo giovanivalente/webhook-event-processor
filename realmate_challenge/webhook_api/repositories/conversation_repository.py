@@ -27,7 +27,7 @@ class ConversationRepository(BaseRepository[ORMConversation], ConversationReposi
         return conversation_model_to_entity(conversation)
 
     def get_conversation_by_id(self, conversation_id: UUID, raise_exception: bool = True) -> ConversationEntity | None:
-        conversation = self.safe_get(id=conversation_id)
+        conversation = self.safe_get_with_prefetch(prefetch_fields=['messages'], id=conversation_id)
         if not conversation and raise_exception:
             logger.error(f"Conversation with ID '{conversation_id}' is not found.")
             raise ConversationNotFound()

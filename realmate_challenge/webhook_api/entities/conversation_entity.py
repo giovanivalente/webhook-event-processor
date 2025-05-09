@@ -1,6 +1,7 @@
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
+from typing import List
 from uuid import UUID
 
 from realmate_challenge.shared.exception import RealmateAPIError
@@ -16,6 +17,7 @@ class ConversationEntity:
     external_timestamp: datetime
     created_at: datetime | None = None
     updated_at: datetime | None = None
+    messages: list = field(default_factory=list)
 
     def status_must_be_open(self):
         if self.status == ConversationStatus.CLOSED:
