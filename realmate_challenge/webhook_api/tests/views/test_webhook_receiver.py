@@ -73,19 +73,19 @@ class TestWebhookReceiverAPIView:
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
     def test_should_raise_error_if_data_is_not_provided(self, new_received_message_input_data):
-        new_received_message_input_data['data'] = []
+        del new_received_message_input_data['data']
 
         response = self.client.post(self.url, data=new_received_message_input_data, format='json')
 
         field = response.json().get('errors', {})[0].get('details', {})[0].get('field')
-        code = response.json().get('errors', {})[0].get('details', {})[0].get('code')
+        message = response.json().get('errors', {})[0].get('details', {})[0].get('message')
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert field == 'data'
-        assert code == 'invalid'
+        assert message == 'This field is required.'
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
-    def test_should_raise_error_if_id_is_not_provided(self, new_received_message_input_data):
+    def test_should_raise_error_if_data_id_is_not_provided(self, new_received_message_input_data):
         del new_received_message_input_data['data']['id']
 
         response = self.client.post(self.url, data=new_received_message_input_data, format='json')
@@ -94,11 +94,11 @@ class TestWebhookReceiverAPIView:
         message = response.json().get('errors', {})[0].get('details', {})[0].get('message')
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert field == 'data'
-        assert message == "{'id': [ErrorDetail(string='This field is required.', code='required')]}"
+        assert field == 'data.id'
+        assert message == 'This field is required.'
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
-    def test_should_raise_error_if_id_is_not_uuid_format(self, new_received_message_input_data):
+    def test_should_raise_error_if_data_id_is_not_uuid_format(self, new_received_message_input_data):
         new_received_message_input_data['data']['id'] = 'invalid_uuid_format'
 
         response = self.client.post(self.url, data=new_received_message_input_data, format='json')
@@ -107,8 +107,8 @@ class TestWebhookReceiverAPIView:
         message = response.json().get('errors', {})[0].get('details', {})[0].get('message')
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert field == 'data'
-        assert message == "{'id': [ErrorDetail(string='Must be a valid UUID.', code='invalid')]}"
+        assert field == 'data.id'
+        assert message == 'Must be a valid UUID.'
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
     def test_should_raise_error_if_type_is_new_message_and_direction_is_not_provided(
@@ -138,10 +138,8 @@ class TestWebhookReceiverAPIView:
         message = response.json().get('errors', {})[0].get('details', {})[0].get('message')
 
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert field == 'data'
-        assert message == (
-            "{'direction': [ErrorDetail(string='\"invalid_direction\" is not a valid choice.', code='invalid_choice')]}"
-        )
+        assert field == 'data.direction'
+        assert message == f'\"{expected_direction}\" is not a valid choice.'
 
     @patch('realmate_challenge.webhook_api.factory.ConversationFactory.make_webhook_event_handler', Mock())
     def test_should_raise_error_if_type_is_new_message_and_content_is_not_provided(
