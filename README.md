@@ -1,17 +1,29 @@
 # Webhook Event Processor  -  Realmate Challenge
 
-## Introdução
+## 🧠 Visão Geral
 
-O objetivo deste desafio é avaliar seus conhecimentos em **APIs** e **Webhooks**, além da sua capacidade de aprender rapidamente e implementar soluções eficientes, usando frameworks renomados como **Django** e **Django Rest Framework (DRF)**.
+Este projeto é uma API RESTful desenvolvida com Django e Django REST Framework, projetada para processar eventos recebidos via webhooks relacionados a conversas e mensagens de atendimento (como chats de WhatsApp, Instagram ou portais de atendimento).
+O sistema foi construído como parte de um desafio técnico com foco em boas práticas de desenvolvimento backend, modularidade e escalabilidade.
 
-Você deverá desenvolver uma web API que sincroniza eventos de um sistema de atendimentos no WhatsApp, processando webhooks e registrando as alterações no banco de dados.
+A API tem como objetivo receber eventos de forma desacoplada, registrá-los em um banco de dados relacional e fornecer endpoints para listar e consultar conversas junto com suas mensagens, de maneira paginada e documentada via Swagger/OpenAPI.
 
-## O Desafio
-
-Desenvolver uma web API utilizando **Django Rest Framework** para receber webhooks de um sistema de atendimento. Esses webhooks contêm eventos relacionados a conversas e mensagens, e devem ser registrados no banco de dados corretamente.
+Ela segue princípios de Clean Architecture, separando responsabilidades em camadas de domínio, aplicação e infraestrutura, com uso de DTOs, serviços e factories para garantir uma base sólida e testável.
 
 ---
-## Tecnologias
+
+## 🧩 Funcionalidades
+
+- Endpoint POST para processamento de webhooks recebidos
+- Registro de conversas e mensagens no banco de dados
+- Endpoint GET para listar conversas e mensagens paginadas
+- Documentação automatizada com Swagger/OpenAPI
+- Testes automatizados com pytest com cobertura mínima definida
+- Comando customizado para geração de dados falsos para testes manuais (manage.py seed)
+- Linting com ruff e cobertura com coverage
+
+---
+
+## 🚀 Tecnologias
 
 - Python 3.13+
 - Django 5.1
@@ -22,7 +34,7 @@ Desenvolver uma web API utilizando **Django Rest Framework** para receber webhoo
 
 ---
 
-## Instalação
+## 📦 Instalação
 
 ### 1. Clone o repositório
 
@@ -69,7 +81,7 @@ python manage.py runserver
 
 ---
 
-## Endpoints
+## 📮 Endpoints
 
 ### 1. `POST /webhook/`
 
@@ -154,7 +166,7 @@ O endpoint recebe query params opcionais:
 
 ---
 
-## Documentação da API
+## 📘 Documentação da API
 
 Este projeto utiliza drf-spectacular para gerar documentação automatizada da API no padrão OpenAPI 3.0.
 
@@ -164,7 +176,7 @@ http://localhost:8000/redoc/
 ```
 ---
 
-## Testes
+## ✅ Testes
 
 Este projeto utiliza pytest para execução dos testes automatizados e coverage para geração de relatório de cobertura.
 
@@ -181,7 +193,7 @@ http://localhost:63342/webhook-event-processor/htmlcov/index.html
 
 ---
 
-## População da Base de Dados
+## 🗃️ População da Base de Dados
 
 Este projeto inclui um comando de management para popular o banco com dados fictícios (útil para testes manuais e desenvolvimento local).
 
@@ -204,7 +216,7 @@ Esse exemplo cria 3 conversas, cada uma com 10 mensagens.
 
 ---
 
-## Estrutura do Projeto
+## 🛠 Estrutura do Projeto
 
 ```
 realmate_challenge
@@ -230,6 +242,6 @@ realmate_challenge
 
 ---
 
-## Licença
+## 🧾 Licença
 
 Este projeto é apenas para fins educacionais/desafio técnico.
