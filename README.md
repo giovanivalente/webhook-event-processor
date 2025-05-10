@@ -1,4 +1,4 @@
-# realmate-challenge
+# Webhook Event Processor  -  Realmate Challenge
 
 ## Introdução
 
@@ -6,31 +6,74 @@ O objetivo deste desafio é avaliar seus conhecimentos em **APIs** e **Webhooks*
 
 Você deverá desenvolver uma web API que sincroniza eventos de um sistema de atendimentos no WhatsApp, processando webhooks e registrando as alterações no banco de dados.
 
-## 🎯 O Desafio
+## O Desafio
 
 Desenvolver uma web API utilizando **Django Rest Framework** para receber webhooks de um sistema de atendimento. Esses webhooks contêm eventos relacionados a conversas e mensagens, e devem ser registrados no banco de dados corretamente.
 
-## 📌 Requisitos
+---
+## Tecnologias
 
-1.	Criar dois modelos principais:
-	- `Conversation`
-	- `Message` (relacionado a uma `Conversation`)
-2.	A API deve:
-	- Receber eventos via POST no endpoint `localhost/webhook/`
-	- Criar instâncias dos modelos correspondentes
-3.	Criar um endpoint GET em `localhost/conversations/{id}` para expor a conversa, incluindo:
-	- Seu estado (`OPEN` ou `CLOSED`)
-	- Suas mensagens
-4.	Lidar com erros de maneira graceful (evitar retornos de erro 500).
-5.	Restrições:
-	- Uma `Conversation` deve ter um estado. Os estados possíveis são: `OPEN` e `CLOSED`
-	- Uma `CLOSED` `Conversation` não pode receber novas mensagens
-	- Uma `Message` deve ter dois tipos: `SENT` e `RECEIVED`
-6.	O banco de dados utilizado deve ser SQLite.
+- Python 3.13+
+- Django 5.1
+- Django Rest Framework
+- DRF Spectacular (para documentação OpenAPI)
+- Poetry (gerenciador de dependências)
+- SQLite (default, pode ser substituído)
 
-## 📦 Formato dos Webhooks
+---
 
-Os eventos virão no seguinte formato:
+## Instalação
+
+### 1. Clone o repositório
+
+```bash
+git clone git@github.com:giovanivalente/webhook-event-processor.git
+cd webhook-event-processor
+```
+
+### 2. Instale o Poetry
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+Adicione o Poetry ao PATH (se necessário):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+### 3. Instale as dependências
+
+```bash
+poetry install
+```
+
+### 4. Ative o ambiente virtual
+
+```bash
+poetry shell
+```
+
+### 5. Aplique as migrações
+
+```bash
+python manage.py migrate
+```
+
+### 6. Inicie o servidor de desenvolvimento
+
+```bash
+python manage.py runserver
+```
+
+---
+
+## Endpoints
+
+### 1. `POST /webhook/`
+
+Recebe eventos com o seguinte payload:
 
 ### Novo evento de conversa iniciada
 
@@ -86,79 +129,84 @@ Os eventos virão no seguinte formato:
 }
 ```
 
-## 📌 Regras de Negócio
+### Tipos suportados:
 
-- Toda conversa começa no estado “OPEN”
-- Uma conversa no estado “CLOSED” não pode receber novas mensagens
-- As mensagens devem estar associadas a uma conversa existente
-- O ID da mensagem e o ID da conversa devem ser únicos
-- O sistema deve lidar com erros sem retornar HTTP 500
+O campo `type` recebe as seguintes opções:
 
-## 🔥 Bônus (Opcional)
+- `NEW_CONVERSATION`
+- `NEW_MESSAGE`
+- `CLOSE_CONVERSATION`
 
-Se quiser ir além e demonstrar sua capacidade de aprendizado e desenvolvimento rápido, você pode implementar um frontend simples para visualizar as conversas e mensagens.
+O campo `direction` recebe as seguintes opções:
 
-## 🚀 Tecnologias e Ferramentas
+- `RECEIVED`
+- `SENT`
 
-- Django
-- Django Rest Framework
-- Poetry
-- SQLite
-- GitHub
 
-## 📌 Instruções de Instalação
+### 2. `GET /conversations/{id}/`
 
-### Pré-requisitos
+Retorna os dados de uma conversa específica com suas mensagens paginadas.
 
-- Instalar o Poetry para gerenciamento de dependências:
+O endpoint recebe query params opcionais:
+
+- `page_size`: quantidade de mensagens por página (ex: 10)
+- `page`: número da página (ex: 1)
+
+---
+
+## Documentação da API
+
+Este projeto utiliza drf-spectacular para gerar documentação automatizada da API no padrão OpenAPI 3.0.
+
+```
+http://localhost:8000/docs/
+http://localhost:8000/redoc/
+```
+---
+
+## Testes
+
+Este projeto utiliza pytest para execução dos testes automatizados, e coverage para geração de relatório de cobertura.
+
+Para rodar os testes:
 
 ```bash
-pip install poetry
+task test
+```
+O comando roda os testes e gera um relatório HTML que pode ser acessado em:
+
+```
+http://localhost:63342/webhook-event-processor/htmlcov/index.html
 ```
 
-### Instalação do Projeto
+---
 
-> [!WARNING]  
-> Siga todas as instruções de instalação do projeto. O descumprimento dos requisitos de instalação acarretará a desclassificação do(a) candidato(a).
+## 🛠 Estrutura do Projeto
 
-1.	Crie um repositório público, utilizando este repositório como template. Para isso, clique sobre o botão "**Use this template**", no canto superio direito desta tela. Forks **não** serão aceitos.
-
-
-
-2.	Instale as dependências do projeto utilizando o Poetry:
-
-```bash
-cd realmate-challenge
-poetry install
+```
+realmate_challenge
+├── shared
+└── webhook_api
+    ├── contracts
+    │   └── repositories
+    ├── entities
+    ├── management
+    │   ├── commands
+    ├── migrations
+    ├── models
+    ├── repositories
+    ├── serializers
+    ├── tests
+    │   ├── integration_tests
+    │   └── unit_tests
+    │       ├── use_cases
+    │       └── views
+    ├── use_cases
+    └── views
 ```
 
-3.	Aplique as migrações no banco de dados SQLite:
+---
 
-```bash
-python manage.py migrate
-```
+## Licença
 
-4.	Execute o servidor de desenvolvimento:
-
-```bash
-python manage.py runserver
-```
-
-
-## 📌 Entrega e Requisitos
-
-Após concluir o desafio, envie o link do repositório para o e-mail tecnologia@realmate.com.br com seu nome e número do WhatsApp informados no e-mail.
-
-## 📚 Referências
-
-- [Django Rest Framework](https://www.django-rest-framework.org/)
-- [Django](https://www.djangoproject.com/)
-- [Poetry](https://python-poetry.org/)
-
-## 📧 Dúvidas
-
-Caso tenha dúvidas sobre o desafio, entre em contato com nossa equipe de tecnologia no e-mail tecnologia@realmate.com.br.
-
-Boa sorte! 🚀
-
-_Equipe Realmate_
+Este projeto é apenas para fins educacionais/desafio técnico.
