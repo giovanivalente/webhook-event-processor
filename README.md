@@ -166,7 +166,7 @@ http://localhost:8000/redoc/
 
 ## Testes
 
-Este projeto utiliza pytest para execução dos testes automatizados, e coverage para geração de relatório de cobertura.
+Este projeto utiliza pytest para execução dos testes automatizados e coverage para geração de relatório de cobertura.
 
 Para rodar os testes:
 
@@ -181,7 +181,30 @@ http://localhost:63342/webhook-event-processor/htmlcov/index.html
 
 ---
 
-## 🛠 Estrutura do Projeto
+## População da Base de Dados
+
+Este projeto inclui um comando de management para popular o banco com dados fictícios (útil para testes manuais e desenvolvimento local).
+
+### Executar o comando de seed
+
+```
+python manage.py seed
+```
+Por padrão, será criada 1 conversa com 5 mensagens.
+
+### Personalizar quantidade de dados
+
+Você pode passar os argumentos --conversations e --messages:
+
+```
+python manage.py seed --conversations 3 --messages 10
+```
+
+Esse exemplo cria 3 conversas, cada uma com 10 mensagens.
+
+---
+
+## Estrutura do Projeto
 
 ```
 realmate_challenge
